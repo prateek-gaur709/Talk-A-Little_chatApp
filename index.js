@@ -1,10 +1,14 @@
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
 const app = express();
 app.use(cors());
-const port = 4500 || process.env.PORT;
+
+dotenv.config();
+const BASE_URL = process.env.BASE_URL;
+const port = process.env.PORT || 4500;
 
 app.get('/', (req, res) => {
   res.send('Hello world');
@@ -52,5 +56,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on ${BASE_URL}`);
 });
