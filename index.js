@@ -31,12 +31,12 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('userJoined', {
       user: 'Admin',
-      message: `${user} has joined!`,
+      msg: `${user} has joined!`,
     });
 
     socket.emit('welcome', {
       user: 'Admin',
-      message: `Welcome to the chat, ${user}!! `,
+      msg: `Welcome to the chat, ${user}!! `,
     });
   });
 
@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     socket.broadcast.emit('leave', {
       user: 'Admin',
-      message: ` ${users[socket.id]} has left`,
+      msg: ` ${users[socket.id]} has left`,
     });
     console.log(`user left: ${users[socket.id]}! `);
     console.log(socket.connected);
